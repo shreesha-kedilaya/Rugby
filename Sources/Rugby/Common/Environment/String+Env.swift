@@ -43,7 +43,7 @@ extension String {
     static let buildFolder = supportFolder + "/build"
     static let cacheFile = supportFolder + "/cache.yml"
 
-    private static let cacheFolderName = "${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}"
+    private static let cacheFolderName = "${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}-${ARCHS}"
     static func cacheFolder(currentPath: String) -> String {
         "\(currentPath)\(buildFolder)/\(cacheFolderName)"
     }
