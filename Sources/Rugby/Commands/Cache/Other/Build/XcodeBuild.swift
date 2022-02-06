@@ -18,15 +18,17 @@ struct XcodeBuild {
 
     func build() throws {
         let escapedConfig = config.shellFriendly
-        let currentFolder = Folder.current.path.shellFriendly
+        let sdkString = sdk.xcodebuild
+        let patcher = FrameworkFolderPatcher(config: escapedConfig, sdk: sdkString, arch: arch)
+        try patcher.prepareForBuild()
+
         var arguments = [
             "-project \(project)",
             "-scheme \(scheme)",
-            "-sdk \(sdk.xcodebuild)",
+            "-sdk \(sdkString)",
             "-config \(escapedConfig)",
             "ARCHS=\(arch)",
-            "SYMROOT=\(currentFolder)\(String.buildFolder)",
-            "CONFIGURATION_BUILD_DIR=\(currentFolder)\(String.buildFolder)/\(escapedConfig)-\(sdk.xcodebuild)-\(arch)"
+            "SYMROOT=\(Folder.current.path.shellFriendly)\(String.buildsFolder)"
         ]
         arguments.append(contentsOf: xcargs)
         arguments.append("| tee " + .rawBuildLog)
@@ -35,5 +37,7 @@ struct XcodeBuild {
             "NSUnbufferedIO=YES xcodebuild",
             args: arguments
         )
+
+        try patcher.prepareForIntegration()
     }
 }

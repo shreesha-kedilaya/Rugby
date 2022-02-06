@@ -32,8 +32,8 @@ struct CleanStep: Step {
     }
 
     func run(_ input: Void) {
-        if (try? Folder.current.subfolder(at: .buildFolder).delete()) != nil {
-            progress.print("Removed \(String.buildFolder)".yellow)
+        if (try? Folder.current.subfolder(at: .buildsFolder).delete()) != nil {
+            progress.print("Removed \(String.buildsFolder)".yellow)
         }
 
         let filesForDelete: [String] = [.cacheFile]

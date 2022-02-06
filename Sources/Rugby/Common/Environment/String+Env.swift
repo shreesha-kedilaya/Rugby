@@ -40,11 +40,7 @@ extension String {
     static let buildTarget = "RugbyPods"
     static let rawBuildLog = supportFolder + "/rawBuild.log"
     static let buildLog = supportFolder + "/build.log"
-    static let buildFolder = supportFolder + "/build"
+    static let buildsFolder = supportFolder + "/build"
+    static let buildFolder = buildsFolder + "/${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}-${ARCHS}"
     static let cacheFile = supportFolder + "/cache.yml"
-
-    private static let cacheFolderName = "${CONFIGURATION}${EFFECTIVE_PLATFORM_NAME}-${ARCHS}"
-    static func cacheFolder(currentPath: String) -> String {
-        "\(currentPath)\(buildFolder)/\(cacheFolderName)"
-    }
 }
