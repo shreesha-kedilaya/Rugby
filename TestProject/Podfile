@@ -1,3 +1,5 @@
+source 'https://cdn.cocoapods.org/'
+
 platform :ios, '11.0.1'
 project 'TestProject/TestProject.xcodeproj'
 
@@ -12,6 +14,12 @@ target 'TestProject' do
   pod 'LocalPod', :path => '.', :testspecs => ['Tests']
   pod 'Moya/Core'
   pod 'Kingfisher'
+
+  pod 'Apptimize', '~> 3.4.7'
+  pod 'segment-appsflyer-ios', '~> 6.3.0'
+  pod 'Segment-Apptimize', '~> 0.3.2'
+  pod 'JumioMobileSDK/NetverifyBase', '3.9.1'
+  #pod 'JumioMobileSDK/NetverifyFace+iProov', '3.9.1'
 
   target 'TestProjectTests' do
     inherit! :search_paths
